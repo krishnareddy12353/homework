@@ -1,0 +1,49 @@
+package seleniumquestons;
+
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class SaveScreenShotsUsingSeleniumWebdriver {
+	public static void main(String[] args) 
+	{
+ 
+ // Open Firefox
+	System.setProperty("webdriver.gecko.driver","E:\\drivers\\geckodriver.exe");
+	WebDriver driver = new FirefoxDriver();
+
+ 
+// call method
+	SaveScreenShotsUsingSeleniumWebdriver.captureScreenShot(driver);
+ 
+// Maximize the window
+driver.manage().window().maximize();
+SaveScreenShotsUsingSeleniumWebdriver.captureScreenShot(driver);
+ 
+// Pass the url
+driver.get("http://learn-automation.com/how-to-capture-screenshot-in-selenium-webdriver/");
+SaveScreenShotsUsingSeleniumWebdriver.captureScreenShot(driver);
+ 
+  }
+ 
+public static void captureScreenShot(WebDriver ldriver){
+// Take screenshot and store as a file format             
+ File src=((TakesScreenshot)ldriver).getScreenshotAs(OutputType.FILE);           
+try {
+     // now copy the  screenshot to desired location using copyFile method
+ 
+      FileUtils.copyFile(src, new File("C:/selenium/"+System.currentTimeMillis()+".png"));                             
+    } 
+catch (IOException e)
+ 
+    {
+        System.out.println(e.getMessage());
+    }
+  }
+ 
+ }
+

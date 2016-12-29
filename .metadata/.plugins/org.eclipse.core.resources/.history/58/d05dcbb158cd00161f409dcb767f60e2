@@ -1,0 +1,25 @@
+package seleniumquestons;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+
+public class SetLanguageWhileOpeningWebsite 
+{
+	public static void main(String[] args) 
+	{
+		 // Open Firefox
+		System.setProperty("webdriver.gecko.driver","E:\\drivers\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+
+		FirefoxOptions options = new FirefoxOptions();
+     options.addArguments("--test-type");
+     options.addArguments("--lang=hi");
+     FirefoxDriver wd;
+     wd = new FirefoxDriver();
+     wd.manage().window().maximize();
+     wd.get("http://google.com");
+	}
+
+}

@@ -1,0 +1,67 @@
+package seleniumquestons;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class hadlemultiplewindows {
+	public static void main(String[] args) {
+		// Open browser
+		System.setProperty("webdriver.gecko.driver","E:\\drivers\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+		 
+		// Maximize browser
+		driver.manage().window().maximize();
+		 
+		// Load app
+		driver.get("http://www.naukri.com/");
+		 
+        // Put an Implicit wait, this means that any search for elements on the page could take the time the implicit wait is set for before throwing exception
+		 
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        // Launch the URL
+
+        driver.get("http://toolsqa.wpengine.com/automation-practice-switch-windows/");
+
+        // Store and Print the name of the First window on the console
+
+        String handle= driver.getWindowHandle();
+
+        System.out.println(handle);
+
+        // Click on the Button "New Message Window"
+
+        driver.findElement(By.name("New Message Window")).click();
+
+        // Store and Print the name of all the windows open	              
+
+        Set handles = driver.getWindowHandles();
+
+        System.out.println(handles);
+
+        // Pass a window handle to the other window
+
+        for (String handle1 : driver.getWindowHandles()) {
+
+        	System.out.println(handle1);
+
+        	driver.switchTo().window(handle1);
+
+        	}
+
+        // Closing Pop Up window
+
+        driver.close();
+
+        // Close Original window
+
+        driver.quit();
+
+}
+
+}
+
+
